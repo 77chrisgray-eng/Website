@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jordan River MBC Website — Setup, iPhone Publishing &amp; Admin Guide</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.6;color:#1b2233;margin:0;background:#faf7f0}
+header{background:#0b1a33;color:#fff;padding:28px 20px;border-bottom:4px solid #c9a24a}
+header h1{margin:0;font-family:Georgia,serif;font-size:1.7rem}header p{margin:.4rem 0 0;color:#e6cc85}
+main{max-width:860px;margin:0 auto;padding:10px 20px 60px}
+h2{font-family:Georgia,serif;color:#0b1a33;border-bottom:2px solid #c9a24a;padding-bottom:4px;margin-top:2.2rem}
+h3{color:#12264a;margin-bottom:.3rem}
+ol li,ul li{margin-bottom:.45rem}
+code{background:#eef1f7;padding:1px 5px;border-radius:4px;font-size:.92em;word-break:break-all}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.95rem;margin:.5rem 0 1rem}
+th,td{border:1px solid #e4ddcc;padding:8px;text-align:left;vertical-align:top}th{background:#0b1a33;color:#fff}
+.ok{color:#2f6b3a;font-weight:700}.todo{color:#9c4a00;font-weight:700}
+.box{background:#fff;border-left:4px solid #c9a24a;padding:12px 16px;border-radius:6px;margin:1rem 0}
+.warn{border-left-color:#a23a2a}
+nav a{display:inline-block;margin:0 10px 6px 0}
+</style></head><body>
+<header><h1>Jordan River Missionary Baptist Church Website</h1><p>Setup checklist · Publishing from an iPhone · Administrator guide</p></header>
+<main>
+<nav class="box"><strong>Jump to:</strong><br>
+<a href="#status">1. What works now</a><a href="#info">2. Information needed</a><a href="#publish">3. Publish from iPhone</a><a href="#domain">4. Connect JordanRiverBuffalo.com</a><a href="#forms">5. Turn on forms</a><a href="#calendar">6. Calendar</a><a href="#sheet">7. Announcements &amp; sermons</a><a href="#youtube">8. YouTube</a><a href="#giving">9. Online giving</a><a href="#text">10. Text &amp; email announcements</a><a href="#admin">11. Everyday updates</a><a href="#privacy">12. Privacy &amp; security</a><a href="#limits">13. Free-tier limits</a></nav>
+
+<h2 id="status">1. What works now and what still needs setup</h2>
+<p>The website is complete and tested. Everything that depends on church information or an outside account shows a polite “coming soon” message instead of a broken link, and dashed gold “To be supplied” boxes mark content the church still needs to provide.</p>
+<table>
+<tr><th>Feature</th><th>Status</th><th>What's needed</th></tr>
+<tr><td>All 11 pages, navigation, mobile layout, HTTPS-ready</td><td class="ok">Works now</td><td>Publish it (Section 3)</td></tr>
+<tr><td>Interactive calendar (month/list views, filters, event pop-ups, add-to-calendar)</td><td class="ok">Works now with labeled SAMPLE events</td><td>Connect a free Google Calendar (Section 6)</td></tr>
+<tr><td>Counseling, transportation, prayer, contact &amp; subscribe forms</td><td class="todo">Built and tested, but not sending yet</td><td>Free Web3Forms access key (Section 5). Until then, forms clearly say “your request was NOT sent” and give the phone/email.</td></tr>
+<tr><td>Text / Call / Email buttons</td><td class="todo">Needs details</td><td>Church phone, text number and email in <code>config.js</code></td></tr>
+<tr><td>Google Map &amp; Directions</td><td class="todo">Needs details</td><td>Street address and ZIP</td></tr>
+<tr><td>Livestream &amp; sermon archive with search</td><td class="todo">Needs details</td><td>YouTube channel ID (Section 8) and a sermon sheet (Section 7)</td></tr>
+<tr><td>Announcements</td><td class="todo">Needs setup</td><td>Free Google Sheet (Section 7)</td></tr>
+<tr><td>Online giving</td><td class="todo">Needs church decision</td><td>Church chooses and sets up a provider, then pastes the link (Section 9). No payment links were made up.</td></tr>
+<tr><td>Text-message announcements</td><td class="todo">Not free — off for now</td><td>Requires a paid texting service (Section 10). The opt-in checkbox stays hidden until it's turned on.</td></tr>
+<tr><td>Logo, photos, history, mission, vision, statement of faith, pastor &amp; leaders, ministry leaders and meeting times</td><td class="todo">Needs church content</td><td>Supply the real content — nothing was invented</td></tr>
+<tr><td>JordanRiverBuffalo.com</td><td class="todo">Must be purchased</td><td>About $10–11 a year — the only cost (Section 4). The site runs free without it.</td></tr>
+</table>
+
+<h2 id="info">2. Information to collect from the church</h2>
+<ul>
+<li>Street address and ZIP; main phone; a phone that can receive texts; office email; optional prayer email; office hours</li>
+<li>Confirmed service times (Sunday school, worship, Bible study, prayer meeting)</li>
+<li>The church's <strong>original logo</strong> (PNG, ideally with a transparent background) and good photos: building, sanctuary, choir, events (JPG, under 500 KB each is best)</li>
+<li>History, founding date, milestones, mission, vision, statement of faith — exactly as approved by the church</li>
+<li>Pastor's name, title, biography and photo; leadership names and roles</li>
+<li>Ministry descriptions, leaders and meeting times</li>
+<li>Facebook, YouTube, Instagram links; YouTube channel ID</li>
+<li>Which people may receive counseling, transportation and prayer submissions</li>
+<li>Giving provider decision</li>
+</ul>
+
+<h2 id="publish">3. Publish the website — using only an iPhone (free, with HTTPS)</h2>
+<p>Recommended: <strong>GitHub Pages</strong>. It's free, includes HTTPS automatically, and lets you edit the site later right in Safari. Allow about 20 minutes.</p>
+<h3>A. Unzip the files</h3>
+<ol><li>Save <code>JordanRiver-Website.zip</code> to the <strong>Files</strong> app (tap the file → Share → Save to Files).</li>
+<li>In Files, tap the zip once. iPhone creates a folder named <code>JordanRiver-Website</code>. Inside is a <code>website</code> folder — that holds the site files.</li></ol>
+<h3>B. Create a free GitHub account and upload</h3>
+<ol>
+<li>In Safari go to <code>github.com</code> → <strong>Sign up</strong>. Use a church email, not a personal one, so the account stays with the church. Pick a username such as <code>jordanriverbuffalo</code>.</li>
+<li>Tap the <strong>+</strong> (top right) → <strong>New repository</strong>. Name: <code>website</code>. Choose <strong>Public</strong>. Check <strong>Add a README file</strong>. Tap <strong>Create repository</strong>.</li>
+<li>Tap <strong>Add file → Upload files → choose your files</strong> → <strong>Browse</strong> → open the <code>website</code> folder → tap <strong>Select</strong> (top right) → <strong>Select All</strong> → <strong>Open</strong>. (Tip: if the page looks cramped, tap <strong>aA</strong> in the address bar → <strong>Request Desktop Website</strong>.)</li>
+<li>Wait for all files to finish uploading. You should see 21 files, including <code>index.html</code>, <code>config.js</code>, <code>main.js</code> and <code>style.css</code>. Scroll down and tap <strong>Commit changes</strong>.</li>
+</ol>
+<h3>C. Turn on the free website</h3>
+<ol>
+<li>In the repository, tap <strong>Settings</strong> (use Desktop Website if you don't see it) → <strong>Pages</strong>.</li>
+<li>Under <strong>Build and deployment</strong>, Source: <strong>Deploy from a branch</strong>. Branch: <strong>main</strong>, folder <strong>/(root)</strong> → <strong>Save</strong>.</li>
+<li>After 1–2 minutes, refresh. The page shows the live address, e.g. <code>https://jordanriverbuffalo.github.io/website/</code>. It's already secure (HTTPS). That is the free web address you can share right away.</li>
+</ol>
+<div class="box"><strong>Alternative — Cloudflare Pages (also free, also HTTPS):</strong> sign up at <code>dash.cloudflare.com</code> → Workers &amp; Pages → Create → Pages → <strong>Upload assets</strong> → name the project → upload a zip of the files in the <code>website</code> folder → Deploy. You get <code>https://yourproject.pages.dev</code>. Updates mean uploading a new zip each time, so GitHub is easier for regular editing. Cloudflare also uses the included <code>_headers</code> security file.</div>
+
+<h2 id="domain">4. Connect JordanRiverBuffalo.com</h2>
+<p>A custom <strong>.com is not free</strong>. Free hosts give you a free address like <code>…github.io</code> instead. I couldn't check whether JordanRiverBuffalo.com is still available. Search for it at <code>domains.cloudflare.com</code>. Cloudflare Registrar sells domains at cost with no markup on renewals (roughly $10–11 a year for a .com).</p>
+<ol>
+<li>Buy the domain at Cloudflare (or any registrar). Register it to the church, using the church email.</li>
+<li>In Cloudflare: open the domain → <strong>DNS → Records</strong> → add four <strong>A</strong> records, name <code>@</code>, pointing to <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code>. Set the proxy (orange cloud) to <strong>DNS only</strong> (grey).</li>
+<li>Add a <strong>CNAME</strong> record: name <code>www</code>, target <code>YOURUSERNAME.github.io</code> (DNS only).</li>
+<li>In GitHub → repository → Settings → Pages → <strong>Custom domain</strong>: type <code>jordanriverbuffalo.com</code> → Save. When the check passes, tick <strong>Enforce HTTPS</strong>. The certificate can take up to 24 hours.</li>
+<li>If you use a different address, change <code>websiteUrl</code> in <code>config.js</code> and the addresses in <code>sitemap.xml</code> and <code>robots.txt</code>.</li>
+</ol>
+<p>SEO: once the site is live, add it to Google Search Console (free) and submit <code>sitemap.xml</code>. Also claim or update the church's free Google Business Profile so it shows up in Maps.</p>
+
+<h2 id="forms">5. Turn on the forms (free — Web3Forms)</h2>
+<ol>
+<li>Go to <code>web3forms.com</code>, enter the email address that should receive submissions, and tap <strong>Create Access Key</strong>. The key is emailed to you.</li>
+<li>Edit <code>config.js</code> (see Section 11). Paste the key between the quotes of <code>accessKey: ""</code>.</li>
+<li><strong>Keep counseling confidential:</strong> create a second key using the <em>pastor's private email</em> and paste it into <code>counselingKey</code>. Do the same for <code>transportationKey</code> (transportation coordinator) and <code>prayerKey</code> if you like. Any you leave blank use the main key.</li>
+<li><strong>Test every form</strong> after publishing: submit a test on each page and confirm the email arrives. Don't announce the forms until they've been tested.</li>
+</ol>
+<p>Built-in protections: required-field checks with clear messages, a hidden anti-spam field, confirmation and error messages, and an honest “NOT sent” message if a form isn't connected or the internet fails.</p>
+
+<h2 id="calendar">6. Event calendar (free — Google Calendar)</h2>
+<ol>
+<li>Using the church Google account, open Google Calendar (on iPhone use Safari at <code>calendar.google.com</code> with Desktop Website). Create a new calendar named “Jordan River Events”.</li>
+<li>Calendar <strong>Settings → Access permissions → Make available to public</strong> (see all event details). <em>Never put private information in event descriptions.</em></li>
+<li>Under <strong>Integrate calendar</strong>, copy the <strong>Calendar ID</strong> (ends in <code>@group.calendar.google.com</code>). Paste it into <code>googleCalendarId</code> in <code>config.js</code>. That alone shows Google's calendar on the Events page (Option A).</li>
+<li><strong>Option B (recommended look):</strong> at <code>console.cloud.google.com</code> create a free project → enable <strong>Google Calendar API</strong> → Credentials → <strong>Create API key</strong>. Restrict it to <em>Google Calendar API</em> and to <em>Websites</em>: <code>https://jordanriverbuffalo.com/*</code> and your github.io address. Paste the key into <code>googleApiKey</code>. Events then appear in the church-styled calendar, on the home page and in pop-ups with “Add to my calendar” buttons. This step is easiest on a computer if you can borrow one.</li>
+<li>Optional: put a tag like <code>[youth]</code>, <code>[concert]</code>, <code>[outreach]</code>, <code>[anniversary]</code>, <code>[prayer]</code>, <code>[bible]</code>, <code>[worship]</code> or <code>[special]</code> in an event's description to set its color/category. Otherwise it's guessed from the title.</li>
+</ol>
+<p>From then on, <strong>adding an event in Google Calendar (including the iPhone Google Calendar app) updates the website automatically.</strong> Sample events disappear once the calendar is connected.</p>
+
+<h2 id="sheet">7. Announcements &amp; sermon list (free — Google Sheets)</h2>
+<ol>
+<li>Create a Google Sheet with two tabs: <strong>Announcements</strong> and <strong>Sermons</strong>. Use the included template files for the column headings (exact spelling):<br>Announcements: <code>Title, Date, Details, Link, Expires</code><br>Sermons: <code>Title, Date, Speaker, Scripture, YouTube Link</code></li>
+<li>Type dates as <code>2026-12-06</code> or <code>12/6/2026</code>. Announcements disappear by themselves after their <em>Expires</em> date.</li>
+<li>In Safari (Desktop Website): <strong>File → Share → Publish to web</strong> → choose the <em>Announcements</em> tab → <strong>Comma-separated values (.csv)</strong> → Publish → copy the link into <code>announcementsCsv</code>. Repeat for the <em>Sermons</em> tab → <code>sermonsCsv</code>.</li>
+<li>From then on, edit the sheet in the Google Sheets iPhone app. The website picks up changes within a few minutes.</li>
+</ol>
+<p class="box warn">Anything in that sheet is public. Never put member contact details or form submissions there.</p>
+
+<h2 id="youtube">8. YouTube livestream</h2>
+<ol>
+<li>Find the channel ID: sign in to YouTube in Safari → go to <code>youtube.com/account_advanced</code> → copy the <strong>Channel ID</strong> (starts with <code>UC</code>). Paste it into <code>youtube.channelId</code>.</li>
+<li>Add the channel link to <code>social.youtube</code> and a broadcast schedule sentence to <code>youtube.broadcastInfo</code>.</li>
+<li>Go live from YouTube as usual. The Watch Live page plays whatever is currently live on the channel. (YouTube requires the channel to be verified for live streaming. Live streaming from a phone may have extra YouTube requirements.)</li>
+<li>Optional: make a playlist of past services and paste its ID (starts with <code>PL</code>) into <code>sermonsPlaylistId</code>.</li>
+</ol>
+
+<h2 id="giving">9. Online giving</h2>
+<p>The site never handles card numbers. Visitors go to the provider's secure page. The church chooses a provider. Compare <strong>current</strong> fees on each provider's own website before deciding:</p>
+<ul>
+<li><strong>Zeffy</strong> — no monthly cost. It says it charges churches no platform or processing fees and is funded by optional donor tips. Requires nonprofit verification and a bank account in the church's name.</li>
+<li><strong>PayPal (nonprofit/donate button), Tithe.ly, Givelify and others</strong> — no monthly subscription required on basic plans, but they charge a fee on each gift.</li>
+</ul>
+<p>Once set up, paste the giving link into <code>giving.url</code> (and separate fund links if the provider offers them). Write the provider's own fee wording into <code>giving.feeNote</code> so givers see it, and fill in <code>giving.provider</code> and <code>giving.mailInstructions</code>. Until then, the Give buttons show “Online giving coming soon.”</p>
+
+<h2 id="text">10. Text-message and email announcements</h2>
+<p><strong>Free now:</strong> the “Text Us” and “Call Us” buttons simply open the visitor's own phone app. They cost the church nothing.</p>
+<p><strong>Group text announcements are not free.</strong> Sending recurring texts to a list needs a paid texting service. US carriers also generally require business/organization registration (10DLC) for this. When the church is ready:</p>
+<ol><li>Choose and set up a texting service. Make sure it handles STOP/HELP replies automatically.</li>
+<li>In <code>config.js</code> set <code>textAnnouncementsActive: true</code> and the provider's name. The subscribe form then shows an <strong>unchecked</strong> opt-in box with consent wording, message frequency, “message and data rates may apply,” and STOP/HELP instructions. No one is ever signed up automatically.</li>
+<li>Only text people who checked that box. Keep the submission emails as your record of consent.</li></ol>
+<p><strong>Email announcements:</strong> subscriptions arrive by email through the form. For a small list, send announcements from the church email using <strong>BCC</strong>, so members don't see each other's addresses. Always include “Reply UNSUBSCRIBE to stop.” For a larger list, use an email-newsletter service's free tier.</p>
+
+<h2 id="admin">11. Everyday updates — no coding</h2>
+<table>
+<tr><th>Task</th><th>Where</th></tr>
+<tr><td>Add / change / cancel events</td><td>Google Calendar app</td></tr>
+<tr><td>Post or remove announcements</td><td>Google Sheet → Announcements tab</td></tr>
+<tr><td>Add a sermon</td><td>Google Sheet → Sermons tab (paste the YouTube link)</td></tr>
+<tr><td>Review counseling, transportation, prayer, contact &amp; subscription submissions</td><td>The email inboxes tied to the Web3Forms keys (Web3Forms also keeps 30 days of history on the free plan)</td></tr>
+<tr><td>Manage subscriptions</td><td>Keep a private list (e.g., a <em>private</em> Google Sheet) of subscribers; remove anyone who unsubscribes right away</td></tr>
+<tr><td>Phone, address, service times, links, giving, keys</td><td><code>config.js</code> in GitHub</td></tr>
+<tr><td>Ministry details, history, mission, leaders, page text</td><td>The matching <code>.html</code> page in GitHub (search for the text in brackets)</td></tr>
+<tr><td>Logo and photos</td><td>Upload the image in GitHub, then type its file name in <code>config.js</code></td></tr>
+</table>
+<h3>How to edit a file on iPhone</h3>
+<ol><li>Open your repository on github.com → tap the file (e.g., <code>config.js</code>) → tap the <strong>pencil</strong> (Edit).</li>
+<li>Change only the text between quotation marks. Keep every quote, comma and bracket.</li>
+<li>Tap <strong>Commit changes</strong>. The live site updates in about 1–2 minutes. If something looks wrong, open the file's <strong>History</strong> to see and undo the change.</li></ol>
+<h3>Upload a logo or photo</h3>
+<ol><li>Repository → <strong>Add file → Upload files</strong> → choose the image → Commit.</li>
+<li>Edit <code>config.js</code>: e.g. <code>logo: "logo.png"</code>, <code>heroImage: "sanctuary.jpg"</code>, <code>pastorPhoto: "pastor.jpg"</code>, <code>galleryImages: ["choir.jpg", "outreach.jpg"]</code>. File names must match exactly, including capital letters.</li></ol>
+<h3>When all the content is in</h3>
+<p>Set <code>showPlaceholderMarkers: false</code> in <code>config.js</code> to remove the dashed “To be supplied” boxes.</p>
+
+<h2 id="privacy">12. Privacy &amp; security practices</h2>
+<ul>
+<li>No administrator pages or submissions are ever on the public website. Submissions go only to the inboxes you choose.</li>
+<li>Use church-owned accounts (GitHub, Google, Web3Forms, domain) with strong passwords and two-step verification. Give at least two trusted leaders access so the church never gets locked out.</li>
+<li>Send counseling requests to the pastor's private inbox only. Don't forward them to a group, and delete old requests when they're no longer needed.</li>
+<li>Restrict the Google API key to the church's web addresses, as described in Section 6.</li>
+<li>The GitHub repository is public (that's what makes it free). It contains no private data — never upload member lists or submissions to it.</li>
+</ul>
+
+<h2 id="limits">13. Free-tier limits (checked November 2026 — confirm current terms)</h2>
+<ul>
+<li><strong>GitHub Pages:</strong> free for public repositories, with automatic HTTPS. Meant for informational sites like this one.</li>
+<li><strong>Web3Forms free plan:</strong> 250 submissions a month, 30 days of submission history, email delivery only. If the church outgrows it, a paid plan or another form service would be needed.</li>
+<li><strong>Google Calendar API:</strong> free with a generous daily quota for a church website.</li>
+<li><strong>Google Sheets “Publish to web”:</strong> free. Changes can take a few minutes to appear.</li>
+<li><strong>YouTube:</strong> free. YouTube's own rules apply to live streaming.</li>
+<li><strong>Costs not avoidable:</strong> the domain name (~$10–11/year), group texting (paid), and payment-processing fees if the chosen giving provider charges them.</li>
+</ul>
+</main></body></html>
